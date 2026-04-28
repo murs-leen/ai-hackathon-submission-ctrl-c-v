@@ -30,6 +30,8 @@ export default function RootLayout({
             <nav className="flex space-x-6 text-sm font-medium">
               <a href="/alerts" className="text-muted-foreground hover:text-foreground transition-colors">Alerts</a>
               <a href="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">Dashboard</a>
+              <a href="/history" className="text-muted-foreground hover:text-foreground transition-colors">History</a>
+              <a href="/what-if" className="text-muted-foreground hover:text-foreground transition-colors">What-If</a>
             </nav>
           </div>
         </header>

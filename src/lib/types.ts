@@ -15,7 +15,7 @@ export interface NewsItem {
 }
 
 export interface AnalyzedAlert {
-  newsItem: NewsItem;
+  newsItem?: NewsItem;
   isRelevant: boolean;
   relevanceScore: number;
   urgency: 'critical' | 'high' | 'medium' | 'low';
@@ -23,6 +23,8 @@ export interface AnalyzedAlert {
   costImpact: number; // negative = savings
   recommendedAction: string;
   affectedTool: string; // which tool from stack this affects
+  sourceUrl?: string;
+  confidence?: number;
 }
 
 export interface DashboardData {
@@ -31,4 +33,33 @@ export interface DashboardData {
   totalMonthlyCost: number;
   potentialSavings: number;
   bankBalance: number;
+}
+
+export interface AlertHistoryItem {
+  id: string;
+  alert: AnalyzedAlert;
+  status: 'pending' | 'acted' | 'dismissed';
+  actedAt?: string;
+  dismissedAt?: string;
+  dismissReason?: string;
+  savingsAchieved?: number; // Only if acted
+  notes?: string;
+}
+
+export interface AlertHistory {
+  items: AlertHistoryItem[];
+  totalSavingsAchieved: number;
+  totalAlertsActedOn: number;
+}
+
+export interface SavedScenario {
+  id: string;
+  currentToolName: string;
+  replacementToolName: string;
+  estimatedNewCost: number;
+  monthlySavings: number;
+  migrationComplexity: 'low' | 'medium' | 'high';
+  featureComparison: string;
+  recommendation: string;
+  caveats: string[];
 }
