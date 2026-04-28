@@ -25,6 +25,7 @@ export interface AnalyzedAlert {
   affectedTool: string; // which tool from stack this affects
   sourceUrl?: string;
   confidence?: number;
+  dbId?: string;
 }
 
 export interface DashboardData {
@@ -53,13 +54,11 @@ export interface AlertHistory {
 }
 
 export interface SavedScenario {
-  id: string;
-  currentToolName: string;
-  replacementToolName: string;
-  estimatedNewCost: number;
-  monthlySavings: number;
-  migrationComplexity: 'low' | 'medium' | 'high';
-  featureComparison: string;
-  recommendation: string;
-  caveats: string[];
+  id?: string;
+  scenarioId?: string;
+  currentTool: string;
+  replacementTool: string;
+  estimatedSavings: number;
+  isApplied: boolean;
+  createdAt: string;
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { AuthProvider } from "@/contexts/auth-context";
+import { Navbar } from "@/components/navbar";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -22,27 +23,17 @@ export default function RootLayout({
       <body
         className={`antialiased min-h-screen bg-background text-foreground flex flex-col`}
       >
-        <header className="border-b border-border bg-card/50 backdrop-blur-md sticky top-0 z-50">
-          <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-            <div className="font-bold text-xl flex items-center space-x-2 text-primary tracking-tight">
-              <span>Stack<span className="text-blue-500">Sentinel</span></span>
+        <AuthProvider>
+          <Navbar />
+          <main className="flex-1 flex flex-col">
+            {children}
+          </main>
+          <footer className="py-6 border-t border-border text-center text-sm text-muted-foreground bg-muted/10 mt-auto">
+            <div className="container mx-auto">
+              Built for Google AI Hackathon | Powered by Gemini
             </div>
-            <nav className="flex space-x-6 text-sm font-medium">
-              <a href="/alerts" className="text-muted-foreground hover:text-foreground transition-colors">Alerts</a>
-              <a href="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">Dashboard</a>
-              <a href="/history" className="text-muted-foreground hover:text-foreground transition-colors">History</a>
-              <a href="/what-if" className="text-muted-foreground hover:text-foreground transition-colors">What-If</a>
-            </nav>
-          </div>
-        </header>
-        <main className="flex-1 flex flex-col">
-          {children}
-        </main>
-        <footer className="py-6 border-t border-border text-center text-sm text-muted-foreground bg-muted/10 mt-auto">
-          <div className="container mx-auto">
-            Built for Google AI Hackathon | Powered by Gemini
-          </div>
-        </footer>
+          </footer>
+        </AuthProvider>
       </body>
     </html>
   );
